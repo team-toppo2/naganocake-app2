@@ -2,19 +2,23 @@ Rails.application.routes.draw do
   devise_for :users
 
   # 会員側のルーティング設定
-  root to: 'public/homes#top'
-  get '/about' => 'public/homes#about'
+
+  scope module: :customer do
+    resources :customers
+  root to: 'homes#top'
+  get '/about' => 'homes#about'
   resources :products, only: [:index, :show]
   resources :customers, only: [:edit, :show, :update]
-  get 'customers/unsubscribe' => 'public/customers#unsubscribe'  
-  patch 'customers/withdraw' => 'public/customers#withdraw'
+  get 'customers/unsubscribe' => 'customers#unsubscribe'
+  patch 'customers/withdraw' => 'customers#withdraw'
   resources :carts_items, only: [:index, :create, :destroy, :update]
-  delete 'carts_items/all_destroy' => 'public/carts_items#all_destroy'
+  delete 'carts_items/all_destroy' => 'carts_items#all_destroy'
   resources :orders, only: [:index, :create, :show, :new]
   post 'orders/comfirm' => 'orders#comfirm'
   get 'orders/complete' => 'orders#complete'
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
-  
+  end
+
   # 管理者側のルーティング設定
   namespace :admin do
     get '/admin' => 'admin/homes#top'
