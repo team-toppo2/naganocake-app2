@@ -1,0 +1,19 @@
+<div style="border-bottom: solid 1px black;">
+  <%= render 'customer/homes/customer-header', customer: @customer %>
+</div>
+
+
+<p>ようこそ、ながのCAKEへ！</p>
+<p>このサイトは、ケーキ販売のECサイトになります。</p>
+<p>会員でない方も商品の閲覧はできますが、</p>
+<p>購入には会員登録が必要になります。</p>
+
+<h2>新着商品</h2>
+
+<% @products.first(4).each do |product| %>
+  <%= product.image %>
+  <%= product.name %>
+  <%= product.price %>
+<% end %>
+
+<%= link_to "全ての商品を見る >", products_path %>
