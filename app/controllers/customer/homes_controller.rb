@@ -8,8 +8,4 @@ class Customer::HomesController < ApplicationController
   def about
   end
 
-<<<<<<< HEAD
 end
-=======
-end
->>>>>>> origin/develop
