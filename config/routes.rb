@@ -25,9 +25,9 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get '/about' => 'homes#about'
   resources :products, only: [:index, :show]
-  resources :customer, only: [:edit, :show, :update]
-  get 'customer/unsubscribe' => 'customer#unsubscribe'
-  patch 'customer/withdraw' => 'customer#withdraw'
+  resources :customers, only: [:edit, :show, :update]
+  get 'customers/unsubscribe' => 'customers#unsubscribe'
+  patch 'customers/withdraw' => 'customers#withdraw'
   resources :carts_items, only: [:index, :create, :destroy, :update]
   delete 'carts_items/all_destroy' => 'carts_items#all_destroy'
   resources :orders, only: [:index, :create, :show, :new]
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   # 管理者側のルーティング設定
   namespace :admin do
-    get '/admin' => 'admin/homes#top'
+    get '/' => 'homes#top'
     resources :products, only: [:index, :show, :create, :edit, :update, :new]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
