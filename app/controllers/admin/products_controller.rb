@@ -1,6 +1,6 @@
 class Admin::ProductsController < ApplicationController
   def show
-    @product = Product.find(paramas[])
+    @product = Product.find(paramas[:id])
   end
 
   def index
@@ -21,9 +21,16 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
+    @product = Product.find(paramas[:id])
   end
 
   def update
+    @product = Product.find(paramas[:id])
+    if @product.update(product_params)
+      redirect_to admin_product_path(@product)
+    else
+      render edit
+    end
   end
 
   private
