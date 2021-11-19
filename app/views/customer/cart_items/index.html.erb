@@ -1,0 +1,29 @@
+<h2>注文情報確認</h2>
+<div class="cart_material">
+ <thead>
+   <tr>
+    <td>商品名</td>
+    <td>単価(税込)</td>
+    <td>数量</td>
+    <td>小計</td>
+    <td></td>
+  </tr>
+ </thead>
+ <tbody>
+ <% @cart_items.each do |cart_item| %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>削除ボタン</td>
+  </tr>
+ <% end %>
+ </tbody>
+</div>
+<%# ここまでがカートの中身 ボーダーで表を作る？　%>
+
+<%= link_to "買い物を続ける" %><%# ホーム画面に戻れるリンク設定 %>
+<td>合計金額</td>
+<td></td>
+
