@@ -31,10 +31,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   resources :orders, only: [:index, :create, :show, :new]#順番変更
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
   end
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/develop
   # 管理者側のルーティング設定
   namespace :admin do
     get '/' => 'homes#top'
