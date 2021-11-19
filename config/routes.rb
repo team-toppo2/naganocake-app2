@@ -1,17 +1,17 @@
 Rails.application.routes.draw do
 
- # 顧客用
- # URL /customers/sign_in ...
- devise_for :customers, controllers: {
+# 顧客用
+# URL /customers/sign_in ...
+devise_for :customers,skip: [:passwords,], controllers: {
   registrations: "customer/registrations",
   sessions: 'customer/sessions'
- }
+}
 
- # 管理者用
- # URL /admin/sign_in ...
- devise_for :admin, controllers: {
+# 管理者用
+# URL /admin/sign_in ...
+devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
- }
+}
  namespace :admin do
     get 'admin/new', to: 'admin/sessions#new'
   end
@@ -26,12 +26,15 @@ Rails.application.routes.draw do
   patch 'customers/withdraw' => 'customers#withdraw'
   resources :carts_items, only: [:index, :create, :destroy, :update]
   delete 'carts_items/all_destroy' => 'carts_items#all_destroy'
-  resources :orders, only: [:index, :create, :show, :new]
-  post 'orders/comfirm' => 'orders#comfirm'
-  get 'orders/complete' => 'orders#complete'
+  get 'orders/complete' => 'orders#complete'#順番変更
+  post 'orders/comfirm' => 'orders#comfirm'#順番変更
+  resources :orders, only: [:index, :create, :show, :new]#順番変更
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
   end
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/develop
   # 管理者側のルーティング設定
   namespace :admin do
     get '/' => 'homes#top'
