@@ -1,7 +1,7 @@
 class Customer::HomesController < ApplicationController
 
   def top
-    @customer = current_user
+    @customer = current_customer
     @products = Product.all
   end
 
