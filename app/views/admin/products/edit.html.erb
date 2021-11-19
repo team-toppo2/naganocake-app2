@@ -2,7 +2,7 @@
 <div>
   <div>
     <h2>商品編集</h2>
-    <%= form_with model:@product, local:true do |f| %>
+    <%= form_with model:@product,url: {controller: 'admin/products', action: 'update' }, local:true do |f| %>
       <div>
         <%= f.label :image, "商品画像：" %>
         <%= f.attachment_field :image %>
@@ -17,7 +17,7 @@
       </div>
       <div>
         <%= f.label :genres, "ジャンル：" %>
-        <!--ジャンルのdbに登録が必要-->
+        <%= f.collection_select(:genre_id, @genres, :id, :name) %>
       </div>
       <div>
         <%= f.label :price, "税抜価格：" %>
