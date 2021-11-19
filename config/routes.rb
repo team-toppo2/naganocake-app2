@@ -26,11 +26,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   patch 'customers/withdraw' => 'customers#withdraw'
   resources :carts_items, only: [:index, :create, :destroy, :update]
   delete 'carts_items/all_destroy' => 'carts_items#all_destroy'
-  resources :orders, only: [:index, :create, :show, :new]
-  post 'orders/comfirm' => 'orders#comfirm'
-  get 'orders/complete' => 'orders#complete'
+  get 'orders/complete' => 'orders#complete'#順番変更
+  post 'orders/comfirm' => 'orders#comfirm'#順番変更
+  resources :orders, only: [:index, :create, :show, :new]#順番変更
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
   end
+
   # 管理者側のルーティング設定
   namespace :admin do
     get '/' => 'homes#top'

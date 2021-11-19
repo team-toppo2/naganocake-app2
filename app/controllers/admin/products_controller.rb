@@ -1,14 +1,16 @@
 class Admin::ProductsController < ApplicationController
-  def show
-    @product = Product.find(paramas[:id])
-  end
 
   def index
     @products = Product.page(params[:page]).reverse_order
   end
 
+  def show
+    @product = Product.find(params[:id])
+  end
+
   def new
     @product = Product.new
+    @genres =  Genre.all
   end
 
   def create
@@ -21,11 +23,12 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(paramas[:id])
+    @genres =  Genre.all
+    @product = Product.find(params[:id])
   end
 
   def update
-    @product = Product.find(paramas[:id])
+    @product = Product.find(params[:id])
     if @product.update(product_params)
       redirect_to admin_product_path(@product)
     else
@@ -34,8 +37,13 @@ class Admin::ProductsController < ApplicationController
   end
 
   private
+
   def product_params
-    paramas.require(:product).permit(:image,:name,:discription,:genre_id,:price,:is_active)
+    params.require(:product).permit(:image,:name,:discription,:genre_id,:price,:is_active)
+  end
+
+  def set_genres
+    @genres =  Genre.all
   end
 
 end
