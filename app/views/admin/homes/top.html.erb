@@ -15,7 +15,7 @@
   <% @orders.each do |order| %>
   <tr>
     <td><%= order.create_at %></td>
-    <td><%= order.user.last_name %><%= order.user.first_name %></td>
+    <td><%= order.customer.last_name %><%= order.cut.first_name %></td>
     <td><%= order.order_product.amount %></td>
     <td><%= order.order_status %></td>
   </tr>
