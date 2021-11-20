@@ -11,7 +11,7 @@
 <h2>新着商品</h2>
 
 <% @products.first(4).each do |product| %>
-  <%= product.image %>
+  <%= attachment_image_tag product, :image, size: "50×50", fallback: "no_image.jpg" %>
   <%= product.name %>
   <%= product.price %>
 <% end %>
