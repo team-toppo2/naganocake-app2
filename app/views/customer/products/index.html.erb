@@ -1,0 +1,20 @@
+<div>
+  <div>
+    <h2>
+      商品一覧<span>全<%= @products.total_count %>件</span>
+    </h2>
+    <div>
+      <% @products.each do |product| %>
+        <div>
+          <%= attachment_image_tag product, :image, size: "50×50", fallback: "no_image.jpg" %>
+          <p><%= link_to product.name,product_path(product.id) %></p>
+          <% if product.is_active == true %>
+            <p>¥<%= product.price.to_s(:delimited) %></p>
+          <% else %>
+            <p>売切れ</p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
