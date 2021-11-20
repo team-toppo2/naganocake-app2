@@ -1,5 +1,8 @@
-<h2>注文情報確認</h2>
-<div class="cart_material">
+<div class="head">
+  <h2>ショッピングカート</h2>
+  <td>カートを空にする</td>
+  
+ <div class="cart_material">
  <thead>
    <tr>
     <td>商品名</td>
@@ -9,13 +12,20 @@
     <td></td>
   </tr>
  </thead>
+ 
  <tbody>
  <% @cart_items.each do |cart_item| %>
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><%= cart_item.product.name %></td>
+    <td><%= cart_item.product.price.add_tax_price %></td>
+    <td>
+     <%= form_with(url: update_item_url, method: :post, local: true) do |f| %>
+     <%= f.hidden_field :product_id, value: cart_item.product.id %>
+     <%= f.select :amount,options_for_select((1..10).to_a),prompt: "個数選択" %>
+     <%%>
+     <%= %>
+    </td>
+    <td><%= cart_item.subtotal %></td>
     <td>削除ボタン</td>
   </tr>
  <% end %>
@@ -23,7 +33,10 @@
 </div>
 <%# ここまでがカートの中身 ボーダーで表を作る？　%>
 
-<%= link_to "買い物を続ける" %><%# ホーム画面に戻れるリンク設定 %>
+<td><%= link_to "買い物を続ける", products_path %></td><%# ホーム画面に戻れるリンク設定 %>
 <td>合計金額</td>
-<td></td>
+<td><%= @total.round.to_s(:deliminated) %></td>
 
+
+<%#以下submitフォーム作成%>
+<td>情報入力に進む<td>
