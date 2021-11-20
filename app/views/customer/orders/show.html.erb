@@ -3,7 +3,6 @@
 </div>
 
 <h1>注文履歴詳細</h1>
-
 <h2>注文情報</h2>
 <table>
   <tr>
@@ -12,7 +11,11 @@
   </tr>
   <tr>
     <th>配送先</th>
-    <td><%= @order.postal_address %></td>
+    <td>
+      〒<%= @order.postal_code %><br>
+      <%= @order.postal_address %><br>
+      <%= @order.last_name %><%= @order.first_name %>
+    </td>
   </tr>
   <tr>
     <th>支払方法</th>
@@ -28,15 +31,15 @@
 <table>
   <tr>
     <td>商品合計</td>
-    <td><%= @ %></td>
+    <td><%= ???????????? %></td>
   </tr>
   <tr>
     <td>配送料</td>
-    <td><%=  %></td>
+    <td><%= @order.shipping_cost %></td>
   </tr>
   <tr>
     <th>ご請求額</th>
-    <th><%=  %></th>
+    <th><%= @order.final_price %></th>
   </tr>
 </table>
 
@@ -48,12 +51,12 @@
     <th>個数</th>
     <th>小計</th>
   </tr>
-  <% @order_products.each do |order_product| %>
+  <% @order.order_products.each do |order_product| %>
   <tr>
-    <td><%= order_product.product.name %></td>??
-    <td><%= order_product.product.price %></td>??
-    <td><%= order_product.amount %></td>??
-    <td><%= order_customer.小計 %></td>??<!--モデルに小計メソッド定義する-->
+    <td><%= order_product.product.name %></td>
+    <td><%= order_product.product.price.add_tax_price %></td>
+    <td><%= order_product.amount %></td>
+    <td><%= order_customer.小計????????? %></td> <!--モデルに小計メソッド定義する???-->
   </tr>
   <% end %>
 </table>

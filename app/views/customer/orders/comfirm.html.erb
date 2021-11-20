@@ -2,4 +2,47 @@
   <%= render 'customer/homes/customer-header', customer: @customer %>
 </div>
 
-<h1>customer側ordercomfirm</h1>
+<h1>注文情報確認</h1>
+
+<table>
+  <tr>
+    <th>商品名</th>
+    <th>単価(税込)</th>
+    <th>数量</th>
+    <th>小計</th>
+  </tr>
+  <%# .each do || %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <%# end %>
+</table>
+<br>
+<table>
+  <tr>
+    <th>送料</th>
+    <td><%#=  %></td>
+  </tr>
+  <tr>
+    <th>商品合計</th>
+    <td><%#=  %></td>
+  </tr>
+  <tr>
+    <th>請求金額</th>
+    <th><%#=  %></th>
+  </tr>
+</table>
+<br>
+<table>
+  <tr>
+    <th>支払方法</th>
+    <td><%= @order.payment_method %></td>
+  </tr>
+  <tr>
+    <th>お届け先</th>
+    <td>〒<%#= @order.postal_code %><%= " " %><%#= @order.address %><%= " " %><%#= @order.last_name %><%#= @order.first_name %></td>
+  </tr>
+</table>
