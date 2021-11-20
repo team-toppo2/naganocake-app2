@@ -1,2 +1,44 @@
-<h1>Customer::Customers#edit</h1>
-<p>Find me in app/views/customer/customers/edit.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2>会員情報変更</h2>
+    <%= form_with model:@customer, local:true do |f| %>
+
+      <div class="form-group">
+        <%= f.label :"氏名" %>
+        <%= f.text_field :last_name, class: "form-control last_name" %>
+        <%= f.text_field :first_name, class: "form-control first_name" %>
+      </div>
+     <div class="form-group">
+        <%= f.label :"フリガナ" %>
+        <%= f.text_field :last_name_jp, class: "form-control last_name_jp" %>
+        <%= f.text_field :first_name_jp, class: "form-control first_name_jp" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :"郵便番号" %>
+        <%= f.text_field :postal_code, class: "form-control postal_code" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :"住所" %>
+        <%= f.text_field :address, class: "form-control address" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :"電話番号" %>
+        <%= f.text_field :telephone_number, class: "form-control telephone_number" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :"メールアドレス" %>
+        <%= f.text_field :email, class: "form-control email" %>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.submit class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
