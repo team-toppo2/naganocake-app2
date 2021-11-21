@@ -7,9 +7,9 @@ class Customer::CartItemsController < ApplicationController
   
   def create
   # product/showの詳細で登録した商品情報を受け取る
-    @cart_item = current_customer.cart_items.build(cart_item_params)
+    @cart_items = current_customer.cart_items.all
+    @cart_item = current_customer.cart_items.new(cart_item_params)
     #ログイン中カスタマーのカートアイテムを全て取り出す
-    @cart_items = current_user.cart_items.all
     @cart_items.each do |cart_item|
     #カートの中に入れた商品情報が既にカートにある場合は
      if cart_item.product_id == @cart_item.item_id

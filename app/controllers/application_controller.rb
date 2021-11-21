@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     @customer = Customer.new(customer_params)
     @customer.customer_id = current_customer.id
     if @customer.save
-      redirect_to customer_path(@customer)
+      redirect_to root_path(@customer)
     else
       @customers = Customer.all
       render 'index'
@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_jp, :first_name_jp, :postal_code, :address, :telephone_number])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_jp, :first_name_jp, :postal_code, :address, :telephone_number, :encrypted_password])
   end
+  
 end
