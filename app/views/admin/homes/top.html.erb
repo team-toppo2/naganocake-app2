@@ -1,8 +1,3 @@
-<div style="border-bottom: solid 1px black;">
-  <%= render 'admin/homes/admin-header' %>
-</div>
-
-
 <h2>admin top(注文履歴一覧)</h2>
 
 <table>
@@ -14,7 +9,11 @@
   </tr>
   <% @orders.each do |order| %>
   <tr>
-    <td><%= order.create_at %></td>
+    <td>
+      <%= link_to admin_order_path(or) do %>
+        <%= order.create_at %>
+      <% end %>
+    </td>
     <td><%= order.customer.last_name %><%= order.cut.first_name %></td>
     <td><%= order.order_product.amount %></td>
     <td><%= order.order_status %></td>
