@@ -52,9 +52,9 @@ class Customer::RegistrationsController < Devise::RegistrationsController
     root_path
   end
 
-  #def configure_permitted_parameters
-    #devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
-  #end
+  # def configure_permitted_parameters
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
+  # end
   # protected
 
 

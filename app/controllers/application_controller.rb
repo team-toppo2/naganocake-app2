@@ -2,16 +2,16 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
-  def create
-    @customer = Customer.new(customer_params)
-    @customer.customer_id = current_customer.id
-    if @customer.save
-      redirect_to customer_path(@customer)
-    else
-      @customers = Customer.all
-      render 'index'
-    end
-  end
+  # def create
+  #   @customer = Customer.new(customer_params)
+  #   @customer.customer_id = current_customer.id
+  #   if @customer.save
+  #     redirect_to customer_path(@customer)
+  #   else
+  #     @customers = Customer.all
+  #     render 'index'
+  #   end
+  # end
 
   protected
 
