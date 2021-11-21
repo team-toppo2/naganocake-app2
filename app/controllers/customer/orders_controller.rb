@@ -9,11 +9,8 @@ class Customer::OrdersController < ApplicationController
     @customer = current_customer
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    if @order.save
-      redirect_to orders_comfirm_path
-    else
-      render :new
-    end
+    @order.save
+    redirect_to orders_comfirm_path
   end
 
   def comfirm

@@ -8,7 +8,7 @@
 <% @products.first(4).each do |product| %>
   <%= attachment_image_tag product, :image, size: "50×50", fallback: "no_image.jpg" %>
   <%= product.name %>
-  <%= product.price %>
+  ¥<%= product.price %>
 <% end %>
 
 <%= link_to "全ての商品を見る >", products_path %>
