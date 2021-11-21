@@ -1,31 +1,19 @@
 # frozen_string_literal: true
 
 class Customer::RegistrationsController < Devise::RegistrationsController
-  protected
-  def after_sign_up_path_for(resource)
-    customer_path(current_customer.id)
-  end
-
-  def after_sign_out_path_for(resource)
-    root_path
-  end
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
-  end
 
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   #GET /resource/sign_up
-  def new
-     @user = user.new
-  end
+  #def new
+     #super
+  #end
 
   # POST /resource
-  def create
-     super
-  end
+  #def create
+    #super
+  #end
 
   # GET /resource/edit
   # def edit
@@ -51,6 +39,10 @@ class Customer::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  #def customer_params
+    #params.require(:customer).permit(:last_name, :first_name, :last_name_jp, :first_name_jp, :postal_code, :address, :telephone_number, :email, :password)
+  #end
+
   protected
   def after_sign_up_path_for(resource)
     customer_path(current_customer.id)
@@ -60,10 +52,11 @@ class Customer::RegistrationsController < Devise::RegistrationsController
     root_path
   end
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
-  end
+  #def configure_permitted_parameters
+    #devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
+  #end
   # protected
+
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -84,4 +77,9 @@ class Customer::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+
+
+
+
 end
