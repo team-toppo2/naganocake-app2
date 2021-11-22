@@ -20,22 +20,30 @@ class Customer::OrdersController < ApplicationController
       @order.postal_name = @address.postal_name
 
     elsif params[:order][:select_address] == "2" #新しい住所
-      @order = Order.new(address_params)
-      # @order.postal_code = params[:postal_address][:postal_code]
-      # @order.postal_address = params[:postal_address][:postal_address]
-      # @order.postal_name = params[:postal_address][:postal_name]
+      @order.postal_code = params[:order][:postal_code]
+      @order.postal_address = params[:order][:postal_address]
+      @order.postal_name = params[:order][:postal_name]
     end
     #@carts_items = CartItems.find(current_cutomer)?????????
   end
+  
 
   def create
     @customer = current_customer
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @carts_items = current_customer.cart_items #CartItems.find(current_cutomer)
+    @order.shipping_cost = '800'
     # @order.final_price = @carts_items.???????????請求金額算出
-    @order.save
-    @carts_items.destroy_all
+    @order.save #オーダーを保存
+    @carts_items = current_customer.cart_items.all
+      @cart_items.each do |cart_item|
+        @order_products = @order.order_products.new
+        @order_products.order_id = @order.id #不要？
+        @order_products.product_id = cart_item.product_id
+        @order_products.amount = cart_item.product_amount
+        @order_products.save
+      end
+    current_customer.carts_items.destroy_all #カート内商品を全削除
     redirect_to complete_orders_path
   end
 
