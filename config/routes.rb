@@ -21,6 +21,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   root to: 'homes#top'
   get '/about' => 'homes#about'
   resources :products, only: [:index, :show]
+  get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+  patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
   resources :customers, only: [:edit, :show, :update]
   get 'customers/unsubscribe' => 'customers#unsubscribe'
   patch 'customers/withdraw' => 'customers#withdraw'
