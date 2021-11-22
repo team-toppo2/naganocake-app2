@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
+
   # def create
   #   @customer = Customer.new(customer_params)
   #   @customer.customer_id = current_customer.id
