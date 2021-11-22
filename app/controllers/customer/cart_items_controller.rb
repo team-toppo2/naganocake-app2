@@ -1,9 +1,9 @@
 class Customer::CartItemsController < ApplicationController
-  
+
   def index
     @cart_items = current_customer.cart_items.all
   end
-  
+
   def create
   # product/showの詳細で登録した商品情報を受け取る
     @cart_items = current_customer.cart_items.all
@@ -21,27 +21,27 @@ class Customer::CartItemsController < ApplicationController
     @cart_item.save
     redirect_to cart_items_path
   end
-  
+
   def update
     @cart_item = current_customer.cart_items.find(params[:id])
-    @cart_item.update
+    @cart_item.update(product_amount: params[:cart_item][:product_amount].to_i)
     redirect_to cart_items_path
   end
-  
+
   def destroy
     cart_item = current_customer.cart_items.find(params[:id])
     cart_item.destroy
     redirect_to cart_items_path
   end
 
- def cart_items_all_destory
+ def all_destroy
    cart_items = current_customer.cart_items.all
    cart_items.destroy_all
-   render 'index'
+   redirect_to cart_items
  end
- 
+
  def cart_item_params
     params.require(:cart_item).permit(:customer_id, :product_id, :product_amount)
  end
- 
+
 end
