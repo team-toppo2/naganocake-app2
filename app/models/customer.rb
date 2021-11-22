@@ -19,6 +19,6 @@ class Customer < ApplicationRecord
   validates :address, uniqueness: true, length: {maximum: 20, minimum: 2}
   validates :telephone_number, uniqueness: true, length: {maximum: 20, minimum: 2}
   validates :email, uniqueness: true, length: {maximum: 20, minimum: 2}
-  validates :password, uniqueness: true, length: {maximum: 20, minimum: 2}
+
 
 end

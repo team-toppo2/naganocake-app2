@@ -21,6 +21,10 @@ class Customer::AddressesController < ApplicationController
   end
 
   def update
+    @postal_address = PostalAddress.find(params[:id])
+    if @postal_address.update(postal_address_params)
+      redirect_to 
+    end
   end
 
   def destroy
