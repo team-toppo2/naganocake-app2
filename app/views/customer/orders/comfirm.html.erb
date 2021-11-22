@@ -7,12 +7,12 @@
     <th>数量</th>
     <th>小計</th>
   </tr>
-  <%# @order.order_products.each do |order_product| %>
+  <%# @carts_items.each do |carts_item| %>
   <tr>
-    <td><%#= order_product.product.name %></td>
-    <td><%#= order_product.product.price.add_tax_price %></td>
-    <td><%#= order_product.amount %></td>
-    <td><%#= order_product.小計？？？？？？？？？？？？？？？？ %></td>
+    <td><%#= carts_item.product.name %></td>
+    <td><%#= carts_item.product.price.add_tax_price %></td>
+    <td><%#= carts_item.product_amount %></td>
+    <td><%#= carts_item.subtotal %></td>
   </tr>
   <%# end %>
 </table>
@@ -20,7 +20,7 @@
 <table>
   <tr>
     <th>送料</th>
-    <td><%#= @order.shipping_cost %></td>
+    <td><%= @order.shipping_cost %></td>
   </tr>
   <tr>
     <th>商品合計</th>
@@ -28,7 +28,7 @@
   </tr>
   <tr>
     <th>請求金額</th>
-    <th><%#= @order.final_price %></th>
+    <th><%= @order.final_price %></th>
   </tr>
 </table>
 <br>
@@ -39,6 +39,15 @@
   </tr>
   <tr>
     <th>お届け先</th>
-    <td>〒<%#= @order.postal_code %><%= " " %><%#= @order.address %><%= " " %><%#= @order.postal_name %></td>
+    <td>〒<%= @order.postal_code %><%= " " %><%= @order.postal_address %><%= " " %><%= @order.postal_name %></td>
   </tr>
 </table>
+
+<%= form_with model: @order, url: orders_path, local: true do |f| %>
+  <%= f.hidden_field :payment_method, value: @order.payment_method %>
+  <%= f.hidden_field :postal_name, value: @order.postal_name %>
+  <%= f.hidden_field :postal_address, value: @order.postal_address %>
+  <%= f.hidden_field :postal_code, value: @order.postal_code %>
+  <%= f.submit "注文を確定する" %>
+<% end %>
+
