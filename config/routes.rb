@@ -24,14 +24,14 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   resources :customers, only: [:edit, :show, :update]
   get 'customers/unsubscribe' => 'customers#unsubscribe'
   patch 'customers/withdraw' => 'customers#withdraw'
-  resources :carts_items, only: [:index, :create, :destroy, :update]
-  delete 'carts_items/all_destroy' => 'carts_items#all_destroy'
+  delete 'cart_items/all_destroy' => 'cart_items#all_destroy'
+  resources :cart_items, only: [:index, :create, :destroy, :update]
   resources :orders, only: [:index, :create, :show, :new] do
     collection do
       get :complete
       post :comfirm
     end
-  end  
+  end
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
   end
 
