@@ -13,7 +13,7 @@
     </h2>
   </div>
   <% if @product.is_active == true %>
-    <%= form_with model:@cart_item,url: carts_item_path, local:true do |f| %>
+    <%= form_with model:@cart_item,url: carts_items_path, local:true do |f| %>
       <% if customer_signed_in? %>
         <%= f.hidden_field :customer_id, :value => current_customer.id %>
       <% end %>
