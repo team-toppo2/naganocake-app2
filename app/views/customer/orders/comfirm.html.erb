@@ -1,38 +1,41 @@
 <h1>注文情報確認</h1>
 
-<table>
-  <tr>
+<table class="table table-bordered">
+  <tr class="table-secondary">
     <th>商品名</th>
     <th>単価(税込)</th>
     <th>数量</th>
     <th>小計</th>
   </tr>
-  <%# @carts_items.each do |carts_item| %>
+  <% @carts_items.each do |carts_item| %>
   <tr>
-    <td><%#= carts_item.product.name %></td>
-    <td><%#= carts_item.product.price.add_tax_price %></td>
-    <td><%#= carts_item.product_amount %></td>
-    <td><%#= carts_item.subtotal %></td>
+    <td>
+      <%= attachment_image_tag carts_item, :image, size: "20×20", fallback: "no_image.jpg" %>
+      <%= carts_item.product.name %>
+    </td>
+    <td><%= carts_item.product.price.add_tax_price %></td>
+    <td><%= carts_item.product_amount %></td>
+    <td><%= carts_item.product.price.add_tax_price.to_i * carts_item.product_amount.to_i %></td>
   </tr>
-  <%# end %>
+  <% end %>
 </table>
 <br>
-<table>
+<table class="table table-bordered">
   <tr>
-    <th>送料</th>
+    <th class="table-secondary">送料</th>
     <td><%= @order.shipping_cost %></td>
   </tr>
   <tr>
-    <th>商品合計</th>
-    <td><%#= ？？？？？？？？？？？？？？ %></td>
+    <th class="table-secondary">商品合計</th>
+    <td><%= @order.final_price.to_i - @order.shipping_cost.to_i %></td>
   </tr>
   <tr>
-    <th>請求金額</th>
+    <th class="table-secondary">請求金額</th>
     <th><%= @order.final_price %></th>
   </tr>
 </table>
 <br>
-<table>
+<table class="table table-borderless">
   <tr>
     <th>支払方法</th>
     <td><%= @order.payment_method_i18n %></td>
@@ -48,6 +51,8 @@
   <%= f.hidden_field :postal_name, value: @order.postal_name %>
   <%= f.hidden_field :postal_address, value: @order.postal_address %>
   <%= f.hidden_field :postal_code, value: @order.postal_code %>
+  <%= f.hidden_field :final_price, value: @order.final_price %>
+  <%= f.hidden_field :shipping_cost, value: @order.shipping_cost %>
   <%= f.submit "注文を確定する" %>
 <% end %>
 

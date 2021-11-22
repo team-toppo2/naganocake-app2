@@ -1,6 +1,6 @@
 <h1>注文履歴一覧</h1>
-<table>
-  <tr>
+<table class="table table-bordered">
+  <tr class="table-secondary">
     <th>注文日</th>
     <th>配送先</th>
     <th>注文商品</th>
@@ -17,8 +17,8 @@
       <%= order.postal_name %>
     </td>
     <td>
-      <% order.order_producs.each do |order_product| %>
-        <%= order_product.product.name %>
+      <% order.order_producs.each do |order_product| %> <!--あってる？-->
+        <%= order_product.product.name %><br>
       <% end %>
     </td>
     <td><%= order.final_price %>円</td>

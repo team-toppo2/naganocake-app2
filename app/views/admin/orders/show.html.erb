@@ -1,6 +1,6 @@
 <h1>注文履歴詳細</h1>
 
-<table>
+<table class="table table-borderless">
   <tr>
     <th>購入者</th>
     <td>
@@ -17,12 +17,12 @@
     <th>配送先</th>
     <td>
       〒<%= @order.postal_code %><%= " " %><%= @order.address %><br>
-      <%= @order.customer.last_name %><%= @order.customer.first_name %>
+      <%= @order.postal_name %>
     </td>
   </tr>
   <tr>
     <th>支払方法</th>
-    <td><%= @order.payment_method %></td>
+    <td><%= @order.payment_method_i18n %></td>
   </tr>
   <tr>
     <th>注文ステータス</th>
@@ -35,8 +35,8 @@
   </tr>
 </table>
 
-<table>
-  <tr>
+<table class="table table-borderless">
+  <tr class="table table-bordered">
     <th>商品名</th>
     <th>単価(税込)</th>
     <th>数量</th>
@@ -48,7 +48,7 @@
     <td><%= order_product.product.name %></td>
     <td><%= order_product.product.price.add_tax_price %></td>
     <td><%= order_product.amount %></td>
-    <td><%= order_product.subtotal %></td>
+    <td><%= order_product.product.price.add_tax_price.to_i * order_product.amount.to_i %></td>
     <td>
       <%= form_with model: order_product, url:"/admin/order_details/#{order_product.id}" , method: :patch, local: true do |f| %>
         <%= f.select :product_status, OrderProduct.product_statuses_i18n.invert, {prompt: false}  %>
@@ -59,10 +59,10 @@
   <% end %>
 </table>
 
-<table>
+<table class="table table-borderless">
   <tr>
     <th>商品合計</th>
-    <td><%= ？？？？？？？？？？？？？？？ %>円</td>
+    <td><%= @order.final_price.to_i - @order.shipping_cost.to_i %>円</td>
   </tr>
   <tr>
     <th>送料</th>
