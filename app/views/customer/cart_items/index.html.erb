@@ -41,9 +41,8 @@
 </table>
 <%# ここまでがカートの中身 ボーダーで表を作る%>
 
-<td><%= link_to "買い物を続ける", products_path, class: "btn btn-sm btn-primary" %></td><%# ホーム画面に戻れるリンク設定 %>
 
-
+<td><%= link_to "買い物を続ける", root_path, class: "btn btn-sm btn-primary" %></td><%# ホーム画面に戻れるリンク設定 %>
 <table class="table table-bordered">
  <td>合計金額</td>
  <td><%= total.to_s(:delimited)  %></td>

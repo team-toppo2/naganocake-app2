@@ -24,6 +24,7 @@ class Customer::OrdersController < ApplicationController
       @order.postal_address = params[:order][:postal_address]
       @order.postal_name = params[:order][:postal_name]
     end
+    @order.order_status = "waiting"
     @order.shipping_cost = "800"
     @cart_items = current_customer.cart_items.all
     #請求額の計算
@@ -60,7 +61,7 @@ class Customer::OrdersController < ApplicationController
   def index
     @customer = current_customer
     @orders = Order.all
-    # @order_products = @customer.order_products.all
+
   end
 
   def show
@@ -70,7 +71,7 @@ class Customer::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:payment_method, :postal_address, :postal_code, :postal_name, :postal_address_id, :select_postal_address_id, :final_price, :shipping_cost, :user_id)
+    params.require(:order).permit(:payment_method, :postal_address, :postal_code, :postal_name, :postal_address_id, :select_postal_address_id, :final_price, :shipping_cost, :order_status, :user_id)
   end
 
   def address_params

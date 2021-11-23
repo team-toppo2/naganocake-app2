@@ -1,6 +1,7 @@
 class Customer::AddressesController < ApplicationController
 
   def index
+    @customer = current_customer
     @postal_addresses = current_customer.postal_addresses
     @postal_address = PostalAddress.new
   end
