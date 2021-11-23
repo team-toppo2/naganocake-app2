@@ -16,6 +16,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get 'admin/new', to: 'admin/sessions#new'
   end
 
+
+
   # 会員側のルーティング設定
   scope module: :customer do
   root to: 'homes#top'
@@ -24,8 +26,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
   patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
   resources :customers, only: [:edit, :show, :update]
-  resources :carts_items, only: [:index, :create, :destroy, :update]
   delete 'carts_items/all_destroy' => 'carts_items#all_destroy'
+  resources :carts_items, only: [:index, :create, :destroy, :update]
   get 'orders/complete' => 'orders#complete'#順番変更
   post 'orders/comfirm' => 'orders#comfirm'#順番変更
   resources :orders, only: [:index, :create, :show, :new]#順番変更
