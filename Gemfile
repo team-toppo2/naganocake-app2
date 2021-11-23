@@ -67,3 +67,8 @@ gem "refile-mini_magick"
 gem 'kaminari','~> 1.2.1'
 
 gem "enum_help"
+
+gem 'pry-byebug'
+
+gem 'bootstrap', '~> 4.5'
+gem 'jquery-rails'

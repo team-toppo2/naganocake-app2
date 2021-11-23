@@ -30,9 +30,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   patch 'customers/withdraw' => 'customers#withdraw'
   delete 'cart_items/all_destroy' => 'cart_items#all_destroy'
   resources :cart_items, only: [:index, :create, :destroy, :update]
-  get 'orders/complete' => 'orders#complete'#順番変更
-  post 'orders/comfirm' => 'orders#comfirm'#順番変更
-  resources :orders, only: [:index, :create, :show, :new]#順番変更
+  resources :orders, only: [:index, :create, :show, :new] do
+    collection do
+      get :complete
+      post :comfirm
+    end
+  end
   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
   end
 
