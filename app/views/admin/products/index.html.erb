@@ -1,6 +1,11 @@
 <h2>商品一覧</h2>
-<table class='table'>
-  <thead>
+<div>
+  <%= link_to new_admin_product_path do %>
+    <i class="fas fa-plus-circle"></i>
+  <% end %>
+</div>
+<table class="table">
+  <thead class="table-light">
     <tr>
       <th>商品ID</th>
       <th>商品名</th>
