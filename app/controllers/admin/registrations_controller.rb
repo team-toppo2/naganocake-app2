@@ -45,7 +45,11 @@ class Admin::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_out_path_for(resource)
-    admin_path
+<<<<<<< HEAD
+    new_admin_path
+=======
+    new_admin_session_path
+>>>>>>> origin/develop
   end
 
   def configure_permitted_parameters

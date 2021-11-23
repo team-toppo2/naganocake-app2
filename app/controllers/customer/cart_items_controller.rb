@@ -1,6 +1,7 @@
 class Customer::CartItemsController < ApplicationController
 
   def index
+    @customer = current_customer
     @cart_items = current_customer.cart_items.all
   end
 
