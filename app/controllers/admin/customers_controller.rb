@@ -5,27 +5,24 @@ class Admin::CustomersController < ApplicationController
   end
 
   def show
-    @customers = Customer.all
+    @customer = Customer.find(params[:id])
   end
 
   def edit
-    @customers = Customer.all
     @customer = Customer.find(params[:id])
   end
 
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-      redirect_to customer_path(@customer)
-      flash[:success] = "You have updated user successfully."
+      redirect_to admin_customer_path
     else
-    @customers = Customer.all
-      render :edit
+      render edit
     end
   end
 
-  def product_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_jp, :first_name_jp, :postal_code, :address, :telephone_number,:is_deleted)
+  def customer_params
+    params.require(:customer).permit(:last_name, :first_name, :last_name_jp, :first_name_jp, :postal_code, :address, :telephone_number, :is_deleted)
   end
 
 

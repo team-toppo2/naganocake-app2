@@ -1,0 +1,49 @@
+<h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h2>
+
+<table class='table'>
+  <tr>
+	  <th>会員id</th>
+	  <th><%= @customer.id %></th>
+  </tr>
+  <tr>
+	  <th>氏名</th>
+	  <th><%= @customer.last_name %><%= @customer.first_name %></th>
+  </tr>
+  <tr>
+	  <th>フリガナ</th>
+	  <th><%= @customer.last_name_jp %><%= @customer.first_name_jp %></th>
+  </tr>
+  <tr>
+	  <th>郵便番号</th>
+	  <th><%= @customer.postal_code %></th>
+  </tr>
+  <tr>
+	  <th>住所</th>
+	  <th><%= @customer.address %></th>
+  </tr>
+  <tr>
+	  <th>電話番号</th>
+	  <th><%= @customer.telephone_number %></th>
+  </tr>
+  <tr>
+	  <th>メールアドレス</th>
+	  <th><%= @customer.email %></th>
+  </tr>
+  <tr>
+	  <th>会員ステータス</th>
+	  <th><%= @customer.email %>
+	  <% if @customer.is_deleted == false%>
+      <p>有効</p>
+    <% else %>
+      <p>退会</p>
+    <% end %>
+    </th>
+  </tr>
+</table>
+
+<%= link_to '編集する', edit_admin_customer_path(@customer.id) %>
+
+<%= link_to '注文履歴一覧を見る', orders_path(@customer.id) %>
+
+
+
