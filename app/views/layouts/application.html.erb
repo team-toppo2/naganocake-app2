@@ -24,7 +24,7 @@
           <li>ようこそ、<%#= @customer.last_name %>さん！</li>
           <li><%= link_to "マイページ", customer_path(current_customer) %></li>
           <li><%= link_to "商品一覧", products_path %></li>
-          <li><%= link_to 'カート', carts_items_path %></li>
+          <li><%= link_to 'カート', cart_items_path %></li>
           <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "NaganoCake", root_path %></li>
@@ -41,7 +41,7 @@
     </main>
 
     <footer>
-      <div class="h-25" style="border-top: solid 1px black"><b>footer</b></div>
+      <div class="h-25" style="border-top: solid 1px black"></div>
     </footer>
   </body>
 </html>

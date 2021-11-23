@@ -25,13 +25,14 @@ class Customer::OrdersController < ApplicationController
       @order.postal_name = params[:order][:postal_name]
     end
     @order.shipping_cost = "800"
-    @carts_items = current_customer.cart_items.all
+    @cart_items = current_customer.cart_items.all
     #請求額の計算
-    @final_price = @order.shipping_cost.to_i
-    @cart_items.each do |cart_item|
-      @final_price += cart_item.product.price.add_tax_price.to_i
-    end
-    @order.final_price = @final_price.to_i
+    @finalprice = @order.shipping_cost #.to_i
+      @cart_items.each do |cart_item|
+        @subtotal = cart_item.product.add_tax_price * cart_item.product_amount
+        @finalprice += @subtotal #.to_i
+      end
+    @order.final_price = @finalprice #.to_i
   end
 
   def create
@@ -40,7 +41,7 @@ class Customer::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.save
 
-    @carts_items = current_customer.cart_items.all #カート内の情報を全てOrderProductへ保存
+    @cart_items = current_customer.cart_items.all #カート内の情報を全てOrderProductへ保存
       @cart_items.each do |cart_item|
         @order_products = @order.order_products.new
         @order_products.order_id = @order.id #不要？
@@ -58,7 +59,7 @@ class Customer::OrdersController < ApplicationController
 
   def index
     @customer = current_customer
-    @orders = @cutomer.orders
+    @orders = @customer.orders
     # @order_products = @customer.order_products.all
   end
 

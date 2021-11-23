@@ -10,19 +10,19 @@
   </tr>
   <% @orders.each do |order| %>
   <tr>
-    <td><%= order.created_at %></td>
+    <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
     <td>
       〒<%= order.postal_code %><br>
       <%= order.postal_address %><br>
       <%= order.postal_name %>
     </td>
     <td>
-      <% order.order_producs.each do |order_product| %> <!--あってる？-->
+      <% order.order_products.each do |order_product| %>
         <%= order_product.product.name %><br>
       <% end %>
     </td>
     <td><%= order.final_price %>円</td>
-    <td><%= order.order_status %></td>
+    <td><%= order.order_status_i18n %></td>
     <td><%= link_to "表示する", order_path(order) %></td>
   </tr>
   <% end %>

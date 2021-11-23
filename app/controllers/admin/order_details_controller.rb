@@ -1,9 +1,9 @@
 class Admin::OrderDetailsController < ApplicationController
 
   def update
-    @order_detail = OrderDetail.find(params[:order_id][:order_product_id]) #あってる？？？
-    @order.update(order_detail_params)
-  	redirect_to admin_order_path(@order)
+    @order_product = OrderProduct.find(params[:id])
+    @order_product.update(order_detail_params)
+    redirect_to admin_order_path(@order_product.order)
   end
 
   private

@@ -7,15 +7,15 @@
     <th>数量</th>
     <th>小計</th>
   </tr>
-  <% @carts_items.each do |carts_item| %>
+  <% @cart_items.each do |cart_item| %>
   <tr>
     <td>
-      <%= attachment_image_tag carts_item, :image, size: "20×20", fallback: "no_image.jpg" %>
-      <%= carts_item.product.name %>
+      <%= attachment_image_tag cart_item.product, :image, :fill, 65, 65, fallback: "no_image.jpg" %>
+      <%= cart_item.product.name %>
     </td>
-    <td><%= carts_item.product.price.add_tax_price %></td>
-    <td><%= carts_item.product_amount %></td>
-    <td><%= carts_item.product.price.add_tax_price.to_i * carts_item.product_amount.to_i %></td>
+    <td><%= cart_item.product.add_tax_price.to_s(:delimited) %></td>
+    <td><%= cart_item.product_amount %></td>
+    <td><%= (cart_item.product.add_tax_price.to_i * cart_item.product_amount.to_i).to_s(:delimited) %></td>
   </tr>
   <% end %>
 </table>
@@ -23,15 +23,15 @@
 <table class="table table-bordered">
   <tr>
     <th class="table-secondary">送料</th>
-    <td><%= @order.shipping_cost %></td>
+    <td><%= @order.shipping_cost.to_s(:delimited) %></td>
   </tr>
   <tr>
     <th class="table-secondary">商品合計</th>
-    <td><%= @order.final_price.to_i - @order.shipping_cost.to_i %></td>
+    <td><%= (@order.final_price.to_i - @order.shipping_cost.to_i).to_s(:delimited) %></td>
   </tr>
   <tr>
     <th class="table-secondary">請求金額</th>
-    <th><%= @order.final_price %></th>
+    <th><%= @order.final_price.to_s(:delimited) %></th>
   </tr>
 </table>
 <br>
