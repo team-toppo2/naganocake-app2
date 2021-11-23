@@ -18,7 +18,6 @@ class Customer::CustomersController < ApplicationController
     if @customer.update(customer_params)
       redirect_to customer_path(@customer)
     else
-      @customers = Customer.all
       render edit
     end
   end
@@ -38,5 +37,5 @@ end
 
 private
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_jp, :first_name_jp, :postal_code, :address, :telephone_number)
+    params.require(:customer).permit(:last_name, :first_name, :last_name_jp, :first_name_jp, :postal_code, :address, :telephone_number, :is_deleted)
   end
