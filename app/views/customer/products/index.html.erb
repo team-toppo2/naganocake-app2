@@ -6,8 +6,10 @@
     <div>
       <% @products.each do |product| %>
         <div>
-          <%= attachment_image_tag product, :image, size: "50×50", fallback: "no_image.jpg" %>
-          <p><%= link_to product.name,product_path(product.id) %></p>
+          <%= link_to product_path(product.id) do %>
+            <%= attachment_image_tag product, :image, size: "50×50", fallback: "no_image.jpg" %>
+            <p><%= product.name %></p>
+          <% end %>
           <% if product.is_active == true %>
             <p>¥<%= product.price.to_s(:delimited) %></p>
           <% else %>

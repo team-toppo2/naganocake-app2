@@ -16,8 +16,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get 'admin/new', to: 'admin/sessions#new'
   end
 
-
-
   # 会員側のルーティング設定
   scope module: :customer do
   root to: 'homes#top'
