@@ -1,14 +1,34 @@
-<p>ようこそ、ながのCAKEへ！</p>
-<p>このサイトは、ケーキ販売のECサイトになります。</p>
-<p>会員でない方も商品の閲覧はできますが、</p>
-<p>購入には会員登録が必要になります。</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-12 d-flex justify-content-center">
+      <b><p>ようこそ、ながのCAKEへ！</p>
+      <p>このサイトは、ケーキ販売のECサイトになります。</p>
+      <p>会員でない方も商品の閲覧はできますが、</p>
+      <p>購入には会員登録が必要になります。</p></b>
+    </div>
+  </div>
 
-<h2>新着商品</h2>
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <h3><b>新着商品</b></h3>
+    </div>
+  </div>
 
-<% @products.first(4).each do |product| %>
-  <%= attachment_image_tag product, :image, :fill, 150, 150, fallback: "no_image.jpg" %>
-  <%= product.name %>
-  ¥<%= product.price %>
-<% end %>
+  <div class="row mt-2">
+    <% @products.first(4).each do |product| %>
+      <div class="col-md-3">
+        <%= link_to product_path(product) do %>
+          <div><%= attachment_image_tag product, :image, :fill, 200, 200, fallback: "no_image.jpg" %></div>
+          <div><%= product.name %></div>
+          <div>¥<%= product.price %></div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
-<%= link_to "全ての商品を見る >", products_path %>
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <%= link_to "全ての商品を見る >", products_path %>
+    </div>
+  </div>
+</div>
