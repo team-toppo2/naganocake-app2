@@ -28,7 +28,7 @@
     <th>注文ステータス</th>
     <td>
       <%= form_with model: @order, url:"/admin/orders/#{@order.id}" , method: :patch, local: true do |f| %>
-        <%= f.select :order_status, Order.order_statuses_i18n.invert, {prompt: false}  %>
+        <%= f.select :order_status, Order.order_statuses_i18n.invert %>
         <%= f.submit "更新" %>
       <% end %>
     </td>
@@ -51,7 +51,7 @@
     <td><%= (order_product.product.add_tax_price.to_i * order_product.amount.to_i).to_s(:delimited) %></td>
     <td>
       <%= form_with model: order_product, url:"/admin/order_details/#{order_product.id}" , method: :patch, local: true do |f| %>
-        <%= f.select :product_status, OrderProduct.product_statuses_i18n.invert, {prompt: false}  %>
+        <%= f.select :product_status, OrderProduct.product_statuses_i18n.invert %>
         <%= f.submit "更新" %>
       <% end %>
     </td>
