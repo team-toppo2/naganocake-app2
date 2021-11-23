@@ -1,12 +1,12 @@
 class Customer::CustomersController < ApplicationController
   def show
     @customers = Customer.all
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
     @new_customer = Customer.new
   end
 
   def edit
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
     unless current_customer.id == @customer.id
       redirect_to customer_path(current_customer)
     end
@@ -14,7 +14,7 @@ class Customer::CustomersController < ApplicationController
 
 
   def update
-     @customer = Customer.find(params[:id])
+     @customer = current_customer
     if @customer.update(customer_params)
       redirect_to customer_path(@customer)
     else
@@ -24,15 +24,19 @@ class Customer::CustomersController < ApplicationController
   end
 
   def unsubscribe
-    @customers = Customer.all
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
 
   def withdraw
+    @customer = current_customer
+    @customer.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+
   end
 end
 
 private
   def customer_params
-    params.require(:customer).permit(:"氏名", :"フリガナ", :"郵便番号", :"住所", :"電話番号", :"メールアドレス")
+    params.require(:customer).permit(:last_name, :first_name, :last_name_jp, :first_name_jp, :postal_code, :address, :telephone_number)
   end
