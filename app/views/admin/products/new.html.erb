@@ -1,35 +1,39 @@
 <!-- form_with部分 -->
-<div>
-  <div>
-    <h2>商品新規登録</h2>
-    <%= form_with model:@product,url: {controller: 'admin/products', action: 'create' }, local:true do |f| %>
-      <div>
-        <%= f.label :image, "商品画像：" %>
-        <%= f.attachment_field :image %>
-      </div>
-      <div>
-        <%= f.label :name, "商品名：" %>
-        <%= f.text_field :name %>
-      </div>
-      <div>
-        <%= f.label :discription, "商品説明：" %>
-        <%= f.text_area :discription %>
-      </div>
-      <div>
-        <%= f.label :genres, "ジャンル：" %>
-        <%= f.collection_select(:genre_id, @genres, :id, :name,{prompt: "--選択してください--"}) %>
-      </div>
-      <div>
-        <%= f.label :price, "税抜価格：" %>
-        <%= f.text_field :price %>円
-      </div>
-      <div>
-        <%= f.label :is_active, "販売ステータス：" %>
-        <%= f.radio_button :is_active, true %>販売中 <%= f.radio_button :is_active, false %>販売停止中
-      </div>
-      <div>
-        <%= f.submit '新規登録' %>
-        <% end %>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>商品新規登録</h2>
+      <%= form_with model:@product,url: {controller: 'admin/products', action: 'create' }, local:true do |f| %>
+        <div class="form-group">
+          <%= f.label :image, "商品画像：" %>
+          <%= f.attachment_field :image ,class: "form-control-file product_image" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :name, "商品名：" %>
+          <%= f.text_field :name,class: "form-control name" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :discription, "商品説明：" %>
+          <%= f.text_area :discription,class: "form-control discription" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :genres, "ジャンル：" %>
+          <%= f.collection_select(:genre_id, @genres, :id, :name,{prompt: "--選択してください--"},class: "form-control genre") %>
+        </div>
+        <div class="form-group">
+            <%= f.label :price, "税抜価格：" %><br>
+          <div class="form-inline">
+            <%= f.text_field :price,class: "form-control price" %><span>円</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :is_active, "販売ステータス: " %><br>
+          <%= f.radio_button :is_active, true %>販売中 <%= f.radio_button :is_active, false %>販売停止中
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <%= f.submit '新規登録' ,class:"btn btn-success w-100" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
