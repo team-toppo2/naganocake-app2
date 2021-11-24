@@ -1,15 +1,19 @@
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="members.scss" type="text/css">
-</head>
-<body>
-    <h1>マイページ</h1>
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
 
-    <h2>登録情報</h2>
-    <h2><%= link_to '編集する', edit_customer_path %></h2>
+      <h1>マイページ</h1>
 
-    <table class='table'>
-    <tr>
+    <div class="row mt-5 d-flex justify-content-center">
+      <div class="col-md-5">
+        <h2>登録情報</h2>
+      </div>
+      <div class="col-md-5">
+        <h2><%= link_to '編集する', edit_customer_path %></h2>
+      </div>
+    </div>
+
+  <table class=" mb-3 table table-bordered">
 	    <th>氏名</th>
 	    <th><%= @customer.last_name %> <%= @customer.first_name %></th>
     </tr>
@@ -35,13 +39,24 @@
     </tr>
   </table>
 
-    <h2>配送先</h2>
-    <h2><%= link_to '一覧を見る', addresses_path %></h2>
+  <div class="row mt-5 d-flex justify-content-center">
+      <div class="col-md-5">
+        <h2>配送先</h2>
+      </div>
+      <div class="col-md-5">
+        <h2><%= link_to '一覧を見る', addresses_path %></h2>
+      </div>
+  </div>
 
-    <h2>注文履歴</h2>
-    <h2><%= link_to '一覧を見る', orders_path %></h2>
+  <div class="row mt-5 d-flex justify-content-center">
+      <div class="col-md-5">
+        <h2>注文履歴</h2>
+      </div>
+      <div class="col-md-5">
+        <h2><%= link_to '一覧を見る', orders_path %></h2>
+      </div>
+  </div>
 
-</body>
 
 
 

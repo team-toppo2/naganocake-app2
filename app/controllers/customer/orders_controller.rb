@@ -2,7 +2,9 @@ class Customer::OrdersController < ApplicationController
 
   def new
     @customer = current_customer
-    @order = Order.new
+    @order = Order.new #(customer_id: @customer.id)
+
+
   end
 
   def comfirm
