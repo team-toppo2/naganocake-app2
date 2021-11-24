@@ -19,6 +19,7 @@ class Customer::AddressesController < ApplicationController
   end
 
   def edit
+    @customer = current_customer
     @postal_address = PostalAddress.find(params[:id])
   end
 

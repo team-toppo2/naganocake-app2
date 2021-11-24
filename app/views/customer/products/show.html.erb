@@ -1,32 +1,43 @@
-<div>
-  <div>
-    <%= attachment_image_tag @product, :image, size: "50×50", fallback: "no_image.jpg" %>
-  </div>
-  <div>
-    <h2><%= @product.name %></h2>
-    <p><%= @product.discription %></p>
-  </div>
-  <div>
-    <h2>
-      ¥<%= @product.add_tax_price.to_s(:delimited) %>
-      <span>(税込)</span>
-    </h2>
-  </div>
-  <% if @product.is_active == true %>
-    <%= form_with model:@cart_item, url: cart_items_path, local:true do |f| %>
-      <%# if customer_signed_in? %>
-        <%#= f.hidden_field :customer_id, :value => current_customer.id %>
-      <%# end %>
+  <div class="container">
+    <div class="row">
+      <div class="col-9">
+        <h2></h2>
+      </div>
+      <div class="col-md-4 ml-md-auto">
+        <%= attachment_image_tag @product, :image, :fill, 200, 200, fallback: "no_image.jpg" %>
+      </div>
+      <div class="col-md-6">
+        <div>
+          <h2><%= @product.name %></h2>
+          <p><%= @product.discription %></p>
+        </div>
+        <div>
+          <h2>
+            ¥<%= @product.add_tax_price.to_s(:delimited) %>
+            <span>(税込)</span>
+          </h2>
+        </div>
+        <% if @product.is_active == true %>
+          <%= form_with model:@cart_item, url: cart_items_path, local:true do |f| %>
+            <%# if customer_signed_in? %>
+              <%#= f.hidden_field :customer_id, :value => current_customer.id %>
+            <%# end %>
 
-      <%= f.hidden_field :product_id, :value => @product.id %>
-      <div>
-        <%= f.select :product_amount,options_for_select((1..10).to_a),prompt: "個数選択" %>
+            <%= f.hidden_field :product_id, :value => @product.id %>
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-6">
+                  <%= f.select :product_amount,options_for_select((1..10).to_a),prompt: "個数選択" %>
+                </div>
+                <div class="col-6">
+                  <%= f.submit 'カートに入れる', class: "btn btn-success" %>
+                </div>
+          <% end %>
+        <% else %>
+          <h3>売り切れ中</h3>
+        <% end %>
+              </div>
+            </div>
       </div>
-      <div>
-        <%= f.submit 'カートに入れる' %>
-      </div>
-    <% end %>
-  <% else %>
-    <h3>売り切れ中</h3>
-  <% end %>
-</div>
+    </div>
+  </div>
