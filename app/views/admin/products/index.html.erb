@@ -5,7 +5,7 @@
     </div>
     <div class="col-auto">
       <%= link_to new_admin_product_path do %>
-        <i class="fas fa-plus-circle"></i>
+        <i class="fas fa-plus-circle fa-2x"></i>
       <% end %>
     </div>
     <table class="table">
@@ -27,9 +27,9 @@
             <td><%=  product.genre.name %></td>
             <td>
               <% if product.is_active == true %>
-                <p>販売中</p>
+                <p style="color: #32cd32;">販売中</p>
               <% else %>
-                <p>販売停止中</p>
+                <p style="color: #cccccc;">販売停止中</p>
               <% end %>
             </td>
           </tr>

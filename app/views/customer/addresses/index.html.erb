@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div>
+    <div class="col-sm-12 col-md-8 col-lg-5">
       <h2>配送先登録/一覧</h2>
       <%= form_with model:@postal_address,url: addresses_path, local:true do |f| %>
           <div class="form-group">
@@ -19,9 +19,13 @@
             <%= f.submit "新規登録" ,class: "btn btn-success" %>
           </div>
       <% end %>
-      <div>
-        <%= render "postal_index", postal_addresses: @postal_addresses %>
-      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div>
+      <%= render "postal_index", postal_addresses: @postal_addresses %>
     </div>
   </div>
 </div>
