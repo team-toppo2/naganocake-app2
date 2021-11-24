@@ -7,6 +7,7 @@ class Customer::ProductsController < ApplicationController
   end
 
   def show
+    @customer = current_customer
     @product = Product.find(params[:id])
     @cart_item = CartItem.new
   end
