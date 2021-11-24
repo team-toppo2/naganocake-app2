@@ -1,27 +1,27 @@
-<div>
-  <div>
-    <h2>配送先登録/一覧</h2>
-    <%= form_with model:@postal_address,url: addresses_path, local:true do |f| %>
-      <div>
-        <div>
-          <%= f.label :"郵便番号（ハイフンなし）" %>
-          <%= f.text_field :postal_code %>
-        </div>
-        <div>
-          <%= f.label :"住所" %>
-          <%= f.text_field :postal_address %>
-        </div>
-        <div>
-          <%= f.label :"宛名" %>
-          <%= f.text_field :postal_name %>
-        </div>
-        <div>
-          <%= f.submit "新規登録" %>
-        </div>
-      </div>
-    <% end %>
+<div class="container">
+  <div class="row">
     <div>
-      <%= render "postal_index", postal_addresses: @postal_addresses %>
+      <h2>配送先登録/一覧</h2>
+      <%= form_with model:@postal_address,url: addresses_path, local:true do |f| %>
+          <div class="form-group">
+            <%= f.label :"郵便番号（ハイフンなし）:" %>
+            <%= f.text_field :postal_code, class: "form-control code" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :"住所:" %>
+            <%= f.text_field :postal_address, class: "form-control address" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :"宛名:" %>
+            <%= f.text_field :postal_name, class: "form-control name" %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "新規登録" ,class: "btn btn-success" %>
+          </div>
+      <% end %>
+      <div>
+        <%= render "postal_index", postal_addresses: @postal_addresses %>
+      </div>
     </div>
   </div>
 </div>
