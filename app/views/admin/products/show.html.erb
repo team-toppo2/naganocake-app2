@@ -13,9 +13,9 @@
       <p>税込価格(税抜価格):    <%= @product.add_tax_price.to_s(:delimited) %>(<%= @product.price.to_s(:delimited) %>)円</p>
       <p>販売ステータス:
         <% if @product.is_active == true %>
-            販売中
+            <span style="color: #32cd32;">販売中</span>
         <% else %>
-            販売停止中
+            <span style="color: #cccccc;">販売停止中</span>
         <% end %>
       </p>
       <div class="d-grid gap-2 col-6">
