@@ -13,7 +13,7 @@ class Customer::OrdersController < ApplicationController
     if params[:order][:select_address] == "0" # 自身の住所
       @order.postal_code = current_customer.postal_code
       @order.postal_address = current_customer.address
-      @order.postal_name = current_customer.first_name + current_customer.last_name
+      @order.postal_name = current_customer.last_name + current_customer.first_name
     elsif params[:order][:select_address] == "1" #登録済みの住所
       @address = PostalAddress.find(params[:order][:postal_address_id])
       @order.postal_code = @address.postal_code
