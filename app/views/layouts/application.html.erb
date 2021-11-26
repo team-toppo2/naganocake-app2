@@ -4,12 +4,54 @@
     <title>Naganocake2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="https://kit.fontawesome.com/31acb2ecd8.js" crossorigin="anonymous"></script>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header style="border-bottom: solid 1px black;">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+        <div class="container">
+          <div class="navbar-brand" style="font-size: 35px;"><%= link_to "Nagano Cake", root_path, class: 'text-dark' %></div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+              <% if admin_signed_in? %>
+                <li class="nav-item border rounded-lg" style="margin-right: 20px;"><%= link_to "商品一覧", admin_products_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item border rounded-lg" style="margin-right: 20px;"><%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item border rounded-lg" style="margin-right: 20px;"><%= link_to '注文履歴一覧', admin_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item border rounded-lg" style="margin-right: 20px;"><%= link_to 'ジャンル一覧', admin_genres_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item border rounded-lg"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+              <% elsif customer_signed_in? %>
+                <li class="nav-item nav-link text-dark" style="margin-right: 50px;">ようこそ、<%= @customer.last_name %><%= @customer.first_name %>さん！</li>
+                <li class="nav-item border rounded-lg" style="margin-right: 20px;"><%= link_to "マイページ", customer_path(current_customer), class: 'nav-link text-dark' %></li>
+                <li class="nav-item border rounded-lg" style="margin-right: 20px;"><%= link_to "商品一覧", products_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item border rounded-lg" style="margin-right: 20px;"><%= link_to 'カート', cart_items_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item border rounded-lg"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %></li>
+              <% else %>
+                <li class="nav-item border rounded-lg" style="margin-right: 20px;"><%= link_to "About", about_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item border rounded-lg" style="margin-right: 20px;"><%= link_to "商品一覧", products_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item border rounded-lg" style="margin-right: 20px;"><%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %></li>
+                <li class="nav-item border rounded-lg"><%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %></li>
+              <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>
+      <div style="margin-top: 40px; border-top: solid 1px black; height: 60px;"></div>
+    </footer>
   </body>
 </html>

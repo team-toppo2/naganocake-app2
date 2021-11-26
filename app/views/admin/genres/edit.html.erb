@@ -1,0 +1,15 @@
+<% if @genre.errors.any? %>
+ <%= @genre.errors.count %>件のエラーが出ました
+ <%= @genre.errors.full_messages.each do |message| %>
+  <%= message %>
+ <% end %>
+<% end %>
+
+<h2>ジャンル編集</h2>
+<%= form_with model: @genre, url: admin_genre_path(@genre),local:true do |f| %>
+ <table class='table'>
+  <td>ジャンル名</td>
+  <td><%= f.text_field :name, autofocus: true %></td>
+  <td><%= f.submit "変更を保存", class: "btn btn-sm btn-success" %></td>
+ </table>
+ <% end %>

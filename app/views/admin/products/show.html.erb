@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <h2>商品詳細</h2>
+    </div>
+    <div class="col-4">
+      <%= attachment_image_tag @product, :image, width: '70%', height: '65%', fallback: "no_image.jpg" %>
+    </div>
+    <div class="col-6">
+      <p>商品名:    <%= @product.name %></p>
+      <p>商品説明:    <%= @product.discription %></p>
+      <p>ジャンル:    <%= @product.genre.name %></p>
+      <p>税込価格(税抜価格):    <%= @product.add_tax_price.to_s(:delimited) %>(<%= @product.price.to_s(:delimited) %>)円</p>
+      <p>販売ステータス:
+        <% if @product.is_active == true %>
+            <span style="color: #32cd32;">販売中</span>
+        <% else %>
+            <span style="color: #cccccc;">販売停止中</span>
+        <% end %>
+      </p>
+      <div class="d-grid gap-2 col-6">
+        <%= link_to '編集する',edit_admin_product_path(@product), class: "btn btn-success w-100" %>
+      </div>
+    </div>
+  </div>
+</div>

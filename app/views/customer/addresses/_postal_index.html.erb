@@ -1,0 +1,33 @@
+<% if @postal_addresses.present? %>
+  <div class="table-responsive">
+    <table class="table  text-nowrap table-bordered ">
+      <thead>
+        <tr>
+          <th>郵便番号</th>
+          <th>住所</th>
+          <th>宛名</th>
+          <th ></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% postal_addresses.each do |postal_address| %>
+          <tr>
+            <td>
+              <%= postal_address.postal_code  %>
+            </td>
+            <td>
+              <%= postal_address.postal_address  %>
+            </td>
+            <td>
+              <%= postal_address.postal_name  %>
+            </td>
+            <td>
+              <%= link_to "編集する", edit_address_path(postal_address), class: "btn btn-success" %>
+              <%= link_to "削除する", address_path(postal_address),method: :delete,data: {confirm: "本当に削除してもよろしいですか?"}, class: "btn btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
